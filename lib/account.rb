@@ -7,13 +7,17 @@ class Account
   end
 
   def deposit(amount)
-    raise('Value must be positive') if amount < 0
+    check_if_positive(amount)
     @balance += amount
   end
 
   def withdraw(amount)
-    raise('Value must be positive') if amount < 0
+    check_if_positive(amount)
     raise('Value exceeds current balance') if amount > @balance
     @balance -= amount
+  end
+
+  def check_if_positive(amount)
+    raise('Value must be positive') if amount < 0
   end
 end

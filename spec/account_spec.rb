@@ -36,4 +36,10 @@ describe Account do
       expect{ subject.withdraw(20) }.to raise_error('Value exceeds current balance')
     end
   end
+
+  describe '#check_if_positive', :pos_check do
+    it 'Raises an error if the amount is negative' do
+      expect{ subject.check_if_positive(-10) }.to raise_error('Value must be positive')
+    end
+  end
 end
