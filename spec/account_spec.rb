@@ -17,17 +17,23 @@ describe Account do
     end
 
     it 'Raises an error when depositing a negative amount' do
-      expect{ subject.deposit(-10) }.to raise_error('Deposit value must be positive')
+      expect{ subject.deposit(-10) }.to raise_error('Value must be positive')
     end
   end
 
   describe '#withdraw', :withdraw do
     it 'Decreases the account balance by 10' do
+      subject.deposit(10)
       expect{ subject.withdraw(10) }.to change{ subject.balance }.by(-10)
     end
 
-    it 'raises and error when withdrawing a negative amount' do
-      expect{ subject.withdraw(-10) }.to raise_error('Withdraw value must be positive')
+    it 'Raises an error when withdrawing a negative amount' do
+      expect{ subject.withdraw(-10) }.to raise_error('Value must be positive')
+    end
+
+    it 'Raises an error if withdraw amount exceeds balance' do
+      subject.deposit(10)
+      expect{ subject.withdraw(20) }.to raise_error('Value exceeds current balance')
     end
   end
 end
