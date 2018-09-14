@@ -17,6 +17,8 @@ class Account
     @balance -= amount
   end
 
+  private
+
   def check_if_positive(amount)
     raise('Value must be positive') if amount < 0
   end
