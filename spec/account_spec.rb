@@ -10,4 +10,10 @@ describe Account do
       expect(subject.balance).to eq(0)
     end
   end
+
+  describe '#deposit', :deposit do
+    it 'Increases the account balance by 10' do
+      expect{subject.deposit(10)}.to change{subject.balance}.by(10)
+    end
+  end
 end

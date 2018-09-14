@@ -5,4 +5,8 @@ class Account
   def initialize
     @balance = MINIMUM_BALANCE
   end
+
+  def deposit(amount)
+    @balance += amount
+  end
 end
