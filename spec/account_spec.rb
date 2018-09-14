@@ -13,7 +13,11 @@ describe Account do
 
   describe '#deposit', :deposit do
     it 'Increases the account balance by 10' do
-      expect{subject.deposit(10)}.to change{subject.balance}.by(10)
+      expect{ subject.deposit(10) }.to change{ subject.balance }.by(10)
+    end
+
+    it 'Raises an error when depositing a negative amount' do
+      expect{ subject.deposit(-10) }.to raise_error('Deposit value must be positive')
     end
   end
 end
