@@ -12,6 +12,7 @@ class Account
   end
 
   def withdraw(amount)
+    raise('Withdraw value must be positive') if amount < 0
     @balance -= amount
   end
 end
