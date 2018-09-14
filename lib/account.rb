@@ -10,4 +10,8 @@ class Account
     raise('Deposit value must be positive') if amount < 0
     @balance += amount
   end
+
+  def withdraw(amount)
+    @balance -= amount
+  end
 end

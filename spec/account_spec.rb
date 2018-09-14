@@ -20,4 +20,10 @@ describe Account do
       expect{ subject.deposit(-10) }.to raise_error('Deposit value must be positive')
     end
   end
+
+  describe '#withdraw', :withdraw do
+    it 'Decreases the account balance by 10' do
+      expect{ subject.withdraw(10) }.to change{ subject.balance }.by(-10)
+    end
+  end
 end
