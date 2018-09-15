@@ -2,13 +2,15 @@ class Account
   MINIMUM_BALANCE = 0
   attr_reader :balance
 
-  def initialize
+  def initialize(history)
     @balance = MINIMUM_BALANCE
+    @history = history
   end
 
   def deposit(amount)
     check_if_positive(amount)
     @balance += amount
+    @history.log(amount)
   end
 
   def withdraw(amount)

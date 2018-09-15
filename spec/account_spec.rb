@@ -1,6 +1,9 @@
 require 'account'
 
 describe Account do
+  let(:subject) { Account.new(history) }
+  let(:history) { spy :history }
+
   describe '#balance', :balance do
     it 'Returns the minimum balance upon initialisation' do
       expect(subject.balance).to eq(Account::MINIMUM_BALANCE)
@@ -18,6 +21,11 @@ describe Account do
 
     it 'Raises an error when depositing a negative amount' do
       expect{ subject.deposit(-10) }.to raise_error('Value must be positive')
+    end
+
+    it 'Calls the log method on the history' do
+      subject.deposit(10)
+      expect(history).to have_received(:log).once
     end
   end
 
