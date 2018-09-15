@@ -12,6 +12,10 @@ describe History do
   end
 
   describe '#log', :log do
+    it 'Takes 4 arguments' do
+      expect(subject).to respond_to(:log).with(4).arguments
+    end
+
     it 'Increases the transaction_history by 1' do
       expect{ subject.log('14/09/2018', 10, 0, 10) }.to change{ subject.transaction_history.length }.by(1)
     end
