@@ -43,5 +43,11 @@ describe Account do
       subject.deposit(10)
       expect{ subject.withdraw(20) }.to raise_error('Value exceeds current balance')
     end
+
+    it 'Calls the log method twice on the history' do
+      subject.deposit(10)
+      subject.withdraw(10)
+      expect(history).to have_received(:log).twice
+    end
   end
 end

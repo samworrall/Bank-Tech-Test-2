@@ -17,6 +17,7 @@ class Account
     check_if_positive(amount)
     raise('Value exceeds current balance') if amount > @balance
     @balance -= amount
+    @history.log(amount)
   end
 
   private
