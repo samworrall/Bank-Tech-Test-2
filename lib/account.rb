@@ -22,7 +22,7 @@ class Account
   end
 
   def print_statement
-    @printer.pretty_print(@history)
+    puts @printer.pretty_print(@history)
   end
 
   private

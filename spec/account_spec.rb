@@ -3,7 +3,12 @@ require 'account'
 describe Account do
   let(:subject) { Account.new(history, printer) }
   let(:history) { spy :history }
-  let(:printer) { spy :printer }
+  let(:printer) { spy :printer, pretty_print: <<~HEREDOC
+                                              Date || Credit || Debit || Balance
+                                              16/09/2018 || 0 || 10 || 0
+                                              15/09/2018 || 10 || 0 || 10
+                                              HEREDOC
+                }
 
   describe '#balance', :balance do
     it 'Returns the minimum balance upon initialisation' do
@@ -56,6 +61,16 @@ describe Account do
     it 'Calls the pretty_print method on the printer' do
       subject.print_statement
       expect(printer).to have_received(:pretty_print).once
+    end
+
+    it 'Returns a pretty printed statement' do
+      expect{ subject.print_statement }.to output(
+        <<~HEREDOC
+        Date || Credit || Debit || Balance
+        16/09/2018 || 0 || 10 || 0
+        15/09/2018 || 10 || 0 || 10
+        HEREDOC
+      ).to_stdout
     end
   end
 end
