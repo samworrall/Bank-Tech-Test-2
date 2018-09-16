@@ -11,7 +11,7 @@ class Account
   def deposit(amount)
     check_if_positive(amount)
     @balance += amount
-    @history.log(amount)
+    @history.log(Time.now.strftime('%d/%m/%Y'), amount, 0, @balance)
   end
 
   def withdraw(amount)
