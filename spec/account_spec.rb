@@ -1,8 +1,9 @@
 require 'account'
 
 describe Account do
-  let(:subject) { Account.new(history) }
+  let(:subject) { Account.new(history, printer) }
   let(:history) { spy :history }
+  let(:printer) { spy :printer }
 
   describe '#balance', :balance do
     it 'Returns the minimum balance upon initialisation' do
@@ -48,6 +49,13 @@ describe Account do
       subject.deposit(10)
       subject.withdraw(10)
       expect(history).to have_received(:log).twice
+    end
+  end
+
+  describe '#print_statement', :print do
+    it 'Calls the pretty_print method on the printer' do
+      subject.print_statement
+      expect(printer).to have_received(:pretty_print).once
     end
   end
 end

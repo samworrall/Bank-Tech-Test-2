@@ -2,9 +2,10 @@ class Account
   MINIMUM_BALANCE = 0
   attr_reader :balance
 
-  def initialize(history)
+  def initialize(history, printer)
     @balance = MINIMUM_BALANCE
     @history = history
+    @printer = printer
   end
 
   def deposit(amount)
@@ -18,6 +19,10 @@ class Account
     raise('Value exceeds current balance') if amount > @balance
     @balance -= amount
     @history.log(amount)
+  end
+
+  def print_statement
+    @printer.pretty_print(@history)
   end
 
   private
