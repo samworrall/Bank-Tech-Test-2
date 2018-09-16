@@ -2,7 +2,7 @@ class Account
   MINIMUM_BALANCE = 0
   attr_reader :balance
 
-  def initialize(history, printer)
+  def initialize(history = History.new, printer = Printer.new)
     @balance = MINIMUM_BALANCE
     @history = history
     @printer = printer
