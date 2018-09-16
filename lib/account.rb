@@ -18,7 +18,7 @@ class Account
     check_if_positive(amount)
     raise('Value exceeds current balance') if amount > @balance
     @balance -= amount
-    @history.log(amount)
+    @history.log(Time.now.strftime('%d/%m/%Y'), 0, amount, @balance)
   end
 
   def print_statement
