@@ -34,4 +34,16 @@ describe 'Bank Account', :feature do
        {date: @date, credit: 0, debit: 10, balance: 10}]
     )
   end
+
+  it 'Throws an error when withdrawing more than the balance' do
+    expect{ @account.withdraw(10) }.to raise_error('Value exceeds current balance')
+  end
+
+  it 'Throws an error when depositing a negative amount' do
+    expect{ @account.deposit(-10) }.to raise_error('Value must be positive')
+  end
+
+  it 'Throws an error when withdrawing a negative amount' do
+    expect{ @account.withdraw(-10) }.to raise_error('Value must be positive')
+  end
 end
