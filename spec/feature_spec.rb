@@ -46,4 +46,20 @@ describe 'Bank Account', :feature do
   it 'Throws an error when withdrawing a negative amount' do
     expect{ @account.withdraw(-10) }.to raise_error('Value must be positive')
   end
+
+  it 'Returns a full and correct statement' do
+    @account.deposit(100)
+    @account.withdraw(20)
+    @account.withdraw(30)
+    @account.deposit(20)
+    expect{ @account.print_statement }.to output(
+      <<~HEREDOC
+      Date || Credit || Debit || Balance
+      #{@date} || 20 || 0 || 70
+      #{@date} || 0 || 30 || 50
+      #{@date} || 0 || 20 || 80
+      #{@date} || 100 || 0 || 100\n
+      HEREDOC
+    ).to_stdout
+  end
 end
