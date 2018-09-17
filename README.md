@@ -1,3 +1,7 @@
+# Bank Tech Test
+
+This is a re do of the bank tech test to re familiarise myself with Ruby syntax and basic OOP principles. My methodology was much the same as when I first completed this task, and can be seen here - https://github.com/samworrall/Bank-tech-test
+
 ## User Stories
 
 ```
